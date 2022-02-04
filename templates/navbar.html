@@ -1,9 +1,10 @@
 {%  load navbar_checker %}
+{% load static %}
 <header>
             <nav>
                 <ul>
                     {%  check_navbar as checker %}
-                    <li class="img"><img src="/static/images/note.png" /></li>
+                    <li class="img"><img src="{% static 'images/note.png' %}" /></li>
                     <li><a href="/">Notes</a></li>
                     <li class="right">
                         {% if checker %}
