@@ -1,31 +1,35 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
-        <title>Notes</title>
-    </head>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <title>Notes</title>
+</head>
 
-    <body>
-        {% include "navbar.html" %}
+<body>
+{% include "navbar.html" %}
 
-        <div class="body">
-            <h1>Your Profile</h1>
+<div class="body">
+    <h1>Your Profile</h1>
 
-            <div class="note-container">
-                <h2>
-                    {{ user.first_name }} {{user.second_name}}
-                    <img src="{{ user.image_url }}" alt=""/>
-                </h2>
-                <p>Age: {{ user.age }}</p>
-                <div>
-                    <p>{{ notes }}</p>
-                </div>
-                <div class="right">
-                    <button class="button delete">Delete</button>
-                </div>
+    <div class="note-container">
+
+        <form method="POST">
+            {% csrf_token %}
+            <h2>
+                {{ user.first_name }} {{ user.second_name }}
+                <img src="{{ user.image_url }}" alt=""/>
+            </h2>
+            <p>Age: {{ user.age }}</p>
+            <div>
+                <p>{{ notes }}</p>
             </div>
-        </div>
-        {% include "footer.html" %}
-    </body>
+            <div class="right">
+                <button class="button delete">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% include "footer.html" %}
+</body>
 </html>

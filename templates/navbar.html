@@ -1,11 +1,15 @@
+{%  load navbar_checker %}
 <header>
             <nav>
                 <ul>
+                    {%  check_navbar as checker %}
                     <li class="img"><img src="/static/images/note.png" /></li>
                     <li><a href="/">Notes</a></li>
                     <li class="right">
-                        <a href="/add">Add Note</a>
-                        <a href="/profile">Profile</a>
+                        {% if checker %}
+                            <a href="/add">Add Note</a>
+                            <a href="/profile">Profile</a>
+                        {% endif %}
                     </li>
                 </ul>
             </nav>

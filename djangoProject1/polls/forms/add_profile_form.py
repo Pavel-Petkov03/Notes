@@ -8,7 +8,7 @@ class AddProfileForm(forms.ModelForm):
         'id': "id_first_name", "type": "text", "name": "first_name", "max_length": 15
     }))
 
-    second_name = forms.CharField(max_length=15, label="Last Name", widget=forms.Textarea(attrs={
+    second_name = forms.CharField(max_length=15, label="Last Name", widget=forms.TextInput(attrs={
         'id': "id_last_name", "type": "text", "name": "last_name", "max_length": 15
     }))
     age = forms.IntegerField(label="Age", widget=forms.NumberInput(attrs={
