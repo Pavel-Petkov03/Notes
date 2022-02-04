@@ -2,6 +2,8 @@ from django.db import models
 
 
 # Create your models here.
+
+
 class Profile(models.Model):
     first_name = models.CharField(max_length=20)
     second_name = models.CharField(max_length=20)
@@ -13,6 +15,4 @@ class Note(models.Model):
     title = models.CharField(max_length=30)
     image_url = models.URLField()
     content = models.TextField()
-
-
 
