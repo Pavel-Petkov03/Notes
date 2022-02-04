@@ -15,6 +15,13 @@ class AddNoteForm(forms.ModelForm):
         'id': "id_image_url", "type": "url", "name": "image_url", "required": True
     }))
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def disable_fields(self):
+        for (key, value) in self.fields.items():
+            self.fields[key].widget.attrs["disabled"] = True
+
     class Meta:
         model = Note
         fields = "__all__"

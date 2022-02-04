@@ -6,11 +6,13 @@
 # •	http://localhost:8000/profile - profile page
 from django.urls import path
 
-from djangoProject1.polls.views import HomeView, AddNoteView, EditNoteView, DetailsView
+from djangoProject1.polls.views import HomeView, AddNoteView, EditNoteView, DetailsView, DeleteView
 
 urlpatterns = [
     path("", HomeView.as_view()),
     path("add", AddNoteView.as_view()),
     path("edit/<int:pk>", EditNoteView.as_view()),
-    path("details/<int:pk>", DetailsView.as_view())
+    path("details/<int:pk>", DetailsView.as_view()),
+    path("delete/<int:pk>", DeleteView.as_view()),
+    path("profile", DeleteView.as_view()),
 ]
