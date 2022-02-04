@@ -17,4 +17,4 @@ class AddNoteForm(forms.ModelForm):
 
     class Meta:
         model = Note
-        fields = ["title", "content", "image_url"]
+        fields = "__all__"

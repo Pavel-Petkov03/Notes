@@ -1,41 +1,32 @@
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
-        <title>Notes</title>
-    </head>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <title>Notes</title>
+</head>
 
-    <body>
-        <!--navigation bar-->
-        {% include "navbar.html" %}
-        <!--end navigation bar-->
+<body>
+{% include "navbar.html" %}
 
-        <div class="body">
-            <!--headings-->
-            <h1>Note Details</h1>
-            <!--headings-->
-
-            <!--details note box-->
-            <div class="note-details-container">
-                <h2>Today's Tasks</h2>
-                <img class="detail-img" src="https://www.freeiconspng.com/thumbs/tasks-icon/tasks-icon-9.png" alt="note-image" />
-                <div>
-                    <p>Content</p>
-                </div>
-                <p>
-                    Today I need to go shopping, make some pancakes, and at the end of the day I should write some code.
-                </p>
-                <div class="right">
-                    <a class="button edit" href="/edit/4">Edit</a>
-                    <a class="button delete" href="/delete/4">Delete</a>
-                </div>
-            </div>
-            <!--end details note box-->
+<div class="body">
+    <h1>Note Details</h1>
+    <div class="note-details-container">
+        <h2>{{ note.title }}</h2>
+        <img class="detail-img" src="{{ note.image_url }}" alt="note-image"/>
+        <div>
+            <p>Content</p>
         </div>
+        <p>
+            {{ note.content }}
+        </p>
+        <div class="right">
+            <a class="button edit" href="/edit/{{ note.id }}">Edit</a>
+            <a class="button delete" href="/delete/{{ note.id }}">Delete</a>
+        </div>
+    </div>
+</div>
 
-        <!--footer-->
-        {% include "footer.html" %}
-        <!--end footer-->
-    </body>
+{% include "footer.html" %}
+</body>
 </html>
