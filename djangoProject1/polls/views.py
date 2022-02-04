@@ -8,7 +8,6 @@ from django.views import View
 from .forms import AddNoteForm
 
 
-
 class HomeView(View):
     def get(self, req):
         return render(req, "home-no-profile.html")
@@ -31,7 +30,6 @@ class AddNoteView(View):
             return redirect("/add")
 
 
-
 class EditNoteView(View):
     def get(self, req, pk):
         current_note = Note.objects.get(id=pk)
@@ -40,5 +38,14 @@ class EditNoteView(View):
 
     def post(self, req, pk):
         current_note = Note.objects.get(id=pk)
+        form = AddNoteForm(req.POST)
+        if form.is_valid():
+            current_note.image_url = form.cleaned_data["image_url"]
+            current_note.content = form.cleaned_data["content"]
+            current_note.content = form.cleaned_data["title"]
+            current_note.save()
+            redirect("/")
+        else:
+            redirect("/add")
 
 
