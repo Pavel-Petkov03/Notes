@@ -1,15 +1,26 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 
 # Create your views here.
 from .models import Note, Profile
 from django.shortcuts import render
 from django.views import View
-from .forms import AddNoteForm
+from djangoProject1.polls.forms.add_note_form import AddNoteForm
+from djangoProject1.polls.forms.add_profile_form import AddProfileForm
 
 
 class HomeView(View):
     def get(self, req):
-        return render(req, "home-no-profile.html")
+        if Profile.objects.all().__len__() == 0:
+            Note.objects.all().delete()
+            return render(req, "home-no-profile.html", {"form": AddProfileForm()})
+        else:
+            all_notes = Note.objects.all()
+            profile = Profile.objects.get(id=1)
+            return render(req, "home-with-profile.html", {"profile": profile, "all_notes": all_notes, })
+
+    def post(self, req):
+        print(1)
+
 
 
 class AddNoteView(View):
@@ -56,10 +67,11 @@ class DeleteView(View):
 
 class ProfileView(View):
     def get(self, req):
-        if Profile.objects.all().__len__() == 0:
-            Note.objects.all().delete()
-            return render(req, "home-with-profile.html")
-        else:
-            all_notes = Note.objects.all()
-            profile = Profile.objects.get(id=1)
-            return render(req , "home-with-profile.html", {"profile": profile, "all_notes": all_notes})
+        current_user = Profile.objects.get(id=1)
+        notes = Note.objects.all().__len__()
+        return render(req, "profile.html", {"user": current_user, "notes": notes})
+
+    def post(self, req):
+        Profile.objects.get(id=1).delete()
+        Note.objects.all().delete()
+        return redirect("/")

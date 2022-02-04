@@ -1,44 +1,35 @@
-
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
-        <title>Notes</title>
-    </head>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <title>Notes</title>
+</head>
 
-    <body>
-        <!--navigation bar-->
-        {% include "navbar.html" %}
-        <!--end navigation bar-->
+<body>
+{% include "navbar.html" %}
 
-        <h1>My Notes</h1>
+<h1>My Notes</h1>
 
 
-        <h2>There are no notes.</h2>
-        <!--notes container-->
-        <div class="note-container">
-            <h2>Today's Tasks <img src="https://www.freeiconspng.com/thumbs/tasks-icon/tasks-icon-9.png" /></h2>
 
-            <div class="right">
-                <a class="button details" href="/details/3">Details</a>
-                <a class="button edit" href="/edit/3">Edit</a>
-                <a class="button delete" href="/delete/3">Delete</a>
-            </div>
-        </div>
-
-        <div class="note-container">
-            <h2>Python Web Basics <img src="https://about.softuni.bg/Content/images/home-page/softuni-logo.svg" /></h2>
+{% if  all_notes %}
+    <div class="note-container">
+        {% for note in all_notes %}
+            <h2>Today's Tasks <img src="{{ note.image_url }}" alt=""/></h2>
 
             <div class="right">
-                <a class="button details" href="/details/4">Details</a>
-                <a class="button edit" href="/edit/4">Edit</a>
-                <a class="button delete" href="/delete/4">Delete</a>
+                <a class="button details" href="/details/{{ note.id }}">Details</a>
+                <a class="button edit" href="/edit/{{ note.id }}">Edit</a>
+                <a class="button delete" href="/delete/{{ note.id }}">Delete</a>
             </div>
-        </div>
+        {% endfor %}
 
-        <!--end notes container-->
+    </div>
+{% else %}
+    <h2>There are no notes.</h2>
+{% endif %}
 
-        {% include "footer.html" %}
-    </body>
+{% include "footer.html" %}
+</body>
 </html>
